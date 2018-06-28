@@ -8,8 +8,6 @@ public class Main {
     private static String[] JANKEN_TEXT = {"GU", "CHOKI", "PA"};
 
     public static void main(String[] args) {
-	    System.out.println("Hello World!");
-
 	    janken();
     }
 
@@ -28,18 +26,27 @@ public class Main {
 
         System.out.printf("YOU  : %s\nAITE : %s\n", JANKEN_TEXT[jibun], JANKEN_TEXT[aite]);
 
-        int sa = jibun - aite;
-        if (sa < 0) sa += 3;
-
-        switch(sa){
+        switch(janken_calc(jibun, aite)){
             case 0:
                 System.out.println("Aiko!");
                 break;
             case 1:
-                System.out.println("You lose!");
+                System.out.println("You win!");
                 break;
             default:
-                System.out.println("You win!");
+                System.out.println("You lose!");
         }
+    }
+
+    /**
+     * じゃんけんの結果を返す
+     * @param jibun 自分の手
+     * @param aite 相手の手
+     * @return 結果（0=あいこ, 1=勝利, 2=敗北）
+     */
+    static int janken_calc(int jibun, int aite){
+        int sa = aite - jibun;
+        if (sa < 0) sa += 3;
+        return sa;
     }
 }
